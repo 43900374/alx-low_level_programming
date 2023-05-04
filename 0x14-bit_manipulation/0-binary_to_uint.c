@@ -7,43 +7,18 @@
  * Return: converted decimal number or 0 if b is NULL
  */
 unsigned int binary_to_uint(const char *b)
-{
-	unsigned int n = 0;
-	int len = 0, base = 1
-			unsigned int decimal = 0;
-	int str_len = 0, base = 1;
-
-	if (!check_string(b))
-		return (0);
-
-	while (b[str_len] != '\0')
-		str_len++;
-
-	while (str_len)
 	{
-		decimal += ((b[str_len - 1] - '0') * base);
-		base *= 2;
-		str_len--;
-	}
-	return (decimal);
-}
+	int i;
+	unsigned int dec_val = 0;
 
-/**
- * check_string - checks if a string has only 0's and 1's
- * @b: pointer string to be checked
- * Return: 1 if string is valid, 0 otherwise
- */
-
-int check_string(const char *b)
-{
-	if (b == NULL)
+	if (!b)
 		return (0);
 
-	while (*b)
+	for (i = 0; b[i]; i++)
 	{
-		if (*b != '1' && *b != '0')
-		return (0);
-		b++;
+		if (b[i] < '0' || b[i] > '1')
+			return (0);
+		dec_val = 2 * dec_val + (b[i] - '0');
 	}
-	return (1);
-}
+	return (dec_val);
+	}
